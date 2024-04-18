@@ -3,6 +3,7 @@ package com.backend.api.services;
 import com.backend.api.models.InsertMovie;
 import com.backend.api.models.MovieCustomDetails;
 import com.backend.api.models.WatchlistData;
+import com.backend.api.models.exceptions.TmdbServerOffException;
 import com.backend.api.models.tmdb.MovieDetailsResult;
 import com.backend.api.models.tmdb.MovieDetailsSearch;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class WatchlistService {
     private TmdbService tmdbService;
     private ArrayList<WatchlistData> watchlist = new ArrayList<WatchlistData>();
 
-    public Integer addMovie(Integer tmdbId, MovieCustomDetails movieCustomDetails){
+    public Integer addMovie(Integer tmdbId, MovieCustomDetails movieCustomDetails) throws TmdbServerOffException {
         MovieDetailsResult tmdbMovie = tmdbService.getMovie(new MovieDetailsSearch(tmdbId));
         WatchlistData data = new WatchlistData();
         data.movieData = movieCustomDetails;
@@ -25,7 +26,7 @@ public class WatchlistService {
         return watchlist.size()-1;
     }
 
-    public Integer editMovie(Integer id, Integer tmdbId, MovieCustomDetails movieCustomDetails){
+    public Integer editMovie(Integer id, Integer tmdbId, MovieCustomDetails movieCustomDetails) throws TmdbServerOffException{
         WatchlistData data = watchlist.get(id);
         if(data.tmdbMovieData == null || data.tmdbMovieData.id != tmdbId){ // testar null error
             MovieDetailsResult tmdbMovie = tmdbService.getMovie(new MovieDetailsSearch(tmdbId));

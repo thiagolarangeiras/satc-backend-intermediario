@@ -1,9 +1,8 @@
 package com.backend.api.controllers;
 
-import com.backend.api.models.InsertMovie;
-import com.backend.api.models.MovieCustomDetails;
-import com.backend.api.models.ReturnMovie;
-import com.backend.api.models.WatchlistData;
+import com.backend.api.models.*;
+import com.backend.api.models.exceptions.TmdbServerOffException;
+import com.backend.api.models.tmdb.MovieResult;
 import com.backend.api.services.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,18 @@ import java.util.ArrayList;
 public class WatchlistController {
     @Autowired
     private WatchlistService watchlistService;
+
+    private MovieCustomDetails mapInsertMovie(InsertMovie insertMovie){
+        return new MovieCustomDetails(
+            insertMovie.originalTitle,
+            insertMovie.type,
+            insertMovie.author,
+            insertMovie.status,
+            insertMovie.conclusionDate,
+            insertMovie.rating,
+            insertMovie.originalTitle
+        );
+    }
 
     // pegar toda lista
     @GetMapping("/watchlist")
@@ -44,36 +55,25 @@ public class WatchlistController {
 
     @PostMapping("/watchlist")
     public ResponseEntity<Object> addMovie(@RequestParam Integer tmdbId, @RequestBody InsertMovie insertMovie) {
-        MovieCustomDetails movie = new MovieCustomDetails(
-                insertMovie.originalTitle,
-                insertMovie.type,
-                insertMovie.author,
-                insertMovie.status,
-                insertMovie.conclusionDate,
-                insertMovie.rating,
-                insertMovie.originalTitle
-        );
-        Integer result = watchlistService.addMovie(tmdbId, movie);
-        return ResponseEntity.status(201).body(new ReturnMovie(result));
+        MovieCustomDetails movie = mapInsertMovie(insertMovie);
+        try{
+            Integer result = watchlistService.addMovie(tmdbId, movie);
+            return ResponseEntity.status(201).body(new ReturnMovie(result));
+        } catch (TmdbServerOffException e){
+            return ResponseEntity.status(503).body(new ErrorMessage(e.message));
+        }
     }
 
     // editar filme
     @PutMapping("/watchlist")
-    public ResponseEntity<Object> editMovie(
-            @RequestParam Integer id,
-            @RequestParam Integer tmdbId,
-            @RequestBody InsertMovie insertMovie) {
-        MovieCustomDetails movie = new MovieCustomDetails(
-                insertMovie.title,
-                insertMovie.type,
-                insertMovie.author,
-                insertMovie.status,
-                insertMovie.conclusionDate,
-                insertMovie.rating,
-                insertMovie.originalTitle
-        );
-        Integer result = watchlistService.editMovie(id, tmdbId, movie);
-        return ResponseEntity.status(200).body(new ReturnMovie(result));
+    public ResponseEntity<Object> editMovie(@RequestParam Integer id, @RequestParam Integer tmdbId, @RequestBody InsertMovie insertMovie) {
+        MovieCustomDetails movie = mapInsertMovie(insertMovie);
+        try{
+            Integer result = watchlistService.editMovie(id, tmdbId, movie);
+            return ResponseEntity.status(200).body(new ReturnMovie(result));
+        } catch (TmdbServerOffException e){
+            return ResponseEntity.status(503).body(new ErrorMessage(e.message));
+        }
     }
 
     @DeleteMapping("/watchlist")
