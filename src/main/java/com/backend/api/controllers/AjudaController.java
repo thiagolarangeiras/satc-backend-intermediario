@@ -1,14 +1,8 @@
 package com.backend.api.controllers;
 
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.backend.api.models.TmdbMovie;
-import com.backend.api.services.TmdbInfra;
 
 class Estudante {
     public final String estudante = "Thiago Larangeira de Souza";
