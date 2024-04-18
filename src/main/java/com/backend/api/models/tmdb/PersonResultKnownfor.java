@@ -1,25 +1,64 @@
 package com.backend.api.models.tmdb;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 public class PersonResultKnownfor {
-    public String backdrop_path;
+    @JsonProperty("backdrop_path")
+    public String backdropPath;
+    
+    @JsonProperty("id")
     public int id;
-    public String original_title;
+    
+    @JsonProperty("original_title")
+    public String originalTitle;
+    
+    @JsonProperty("overview")
     public String overview;
-    public String poster_path;
-    public String media_type;
+    
+    @JsonProperty("poster_path")
+    public String posterPath;
+    
+    @JsonProperty("media_type")
+    public String mediaType;
+    
+    @JsonProperty("adult")
     public boolean adult;
+    
+    @JsonProperty("title")
     public String title;
-    public String original_language;
-    public ArrayList<Integer> genre_ids;
+    
+    @JsonProperty("original_language")
+    public String originalLanguage;
+    
+    @JsonProperty("genre_ids")
+    public ArrayList<Integer> genreIds;
+    
+    @JsonProperty("popularity")
     public double popularity;
-    public String release_date;
+    
+    @JsonProperty("release_date")
+    public String releaseFate;
+    
+    @JsonProperty("video")
     public boolean video;
-    public double vote_average;
-    public int vote_count;
-    public String original_name;
+    
+    @JsonProperty("vote_average")
+    public double voteAverage;
+    
+    @JsonProperty("vote_count")
+    public int voteCount;
+    
+    @JsonProperty("original_name")
+    public String originalName;
+    
+    @JsonProperty("name")
     public String name;
-    public String first_air_date;
-    public ArrayList<String> origin_country;
+    
+    @JsonProperty("first_air_date")
+    public String firstAirDate;
+    
+    @JsonProperty("origin_country")
+    public ArrayList<String> originCountry;
 }

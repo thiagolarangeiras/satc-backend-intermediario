@@ -45,7 +45,7 @@ public class TmdbService {
                 {"language", personSearch.language}
         };
 
-        String uri = formatUri("/search/movie", params);
+        String uri = formatUri("/search/person", params);
         PersonResultRoot result = client.get()
             .uri(uri)
             .header("Authorization", String.format("Bearer %s", TmdbKey))

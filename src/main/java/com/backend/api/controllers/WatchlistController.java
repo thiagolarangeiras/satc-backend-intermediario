@@ -24,7 +24,7 @@ public class WatchlistController {
     private WatchlistService watchlistService;
 
     // pegar toda lista
-    @GetMapping("/movielist")
+    @GetMapping("/watchlist")
     public ResponseEntity<Object> getList(){
         ArrayList<WatchlistData> list = watchlistService.getWatchlist();
         return ResponseEntity.status(200).body(list);
@@ -42,8 +42,8 @@ public class WatchlistController {
 //        return ResponseEntity.status(200).body(movieId);
 //    }
 
-    @PostMapping("/movie")
-    public ResponseEntity<Object> addMovie(@RequestBody InsertMovie insertMovie) {
+    @PostMapping("/watchlist")
+    public ResponseEntity<Object> addMovie(@RequestParam Integer tmdbId, @RequestBody InsertMovie insertMovie) {
         MovieCustomDetails movie = new MovieCustomDetails(
                 insertMovie.originalTitle,
                 insertMovie.type,
@@ -53,15 +53,18 @@ public class WatchlistController {
                 insertMovie.rating,
                 insertMovie.originalTitle
         );
-        Integer result = watchlistService.addMovie(insertMovie.tmdbId, movie);
+        Integer result = watchlistService.addMovie(tmdbId, movie);
         return ResponseEntity.status(201).body(new ReturnMovie(result));
     }
 
     // editar filme
-    @PutMapping("/movie")
-    public ResponseEntity<Object> editMovie(@RequestParam("id") Integer id,@RequestBody InsertMovie insertMovie) {
+    @PutMapping("/watchlist")
+    public ResponseEntity<Object> editMovie(
+            @RequestParam Integer id,
+            @RequestParam Integer tmdbId,
+            @RequestBody InsertMovie insertMovie) {
         MovieCustomDetails movie = new MovieCustomDetails(
-                insertMovie.originalTitle,
+                insertMovie.title,
                 insertMovie.type,
                 insertMovie.author,
                 insertMovie.status,
@@ -69,11 +72,11 @@ public class WatchlistController {
                 insertMovie.rating,
                 insertMovie.originalTitle
         );
-        Integer result = watchlistService.editMovie(id, insertMovie.tmdbId, movie);
+        Integer result = watchlistService.editMovie(id, tmdbId, movie);
         return ResponseEntity.status(200).body(new ReturnMovie(result));
     }
 
-    @DeleteMapping("/movie")
+    @DeleteMapping("/watchlist")
     public ResponseEntity<Object> RemoveMovie(@RequestParam("id") int id) {
         Integer result = watchlistService.removeMovie(id);
         return ResponseEntity.status(200).body(new ReturnMovie(result));

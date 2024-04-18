@@ -7,4 +7,18 @@ public class MovieDetailsSearch {
     public MovieDetailsSearch(Integer movieId) {
         this.movieId = movieId;
     }
+
+    public Integer getMovieId(){
+        return this.movieId;
+    }
+    public String getLanguage(){
+        return this.language;
+    }
+
+    public void setMovieId(Integer movieid){
+        this.movieId = movieid;
+    }
+    public void setLanguage(String language){
+        this.language = language;
+    }
 }

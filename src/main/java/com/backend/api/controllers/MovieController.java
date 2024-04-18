@@ -24,13 +24,13 @@ public class MovieController {
     }
 
     @GetMapping("/searchPerson")
-    public ResponseEntity<Object> getPerson(@RequestParam PersonSearch personSearch) {
+    public ResponseEntity<Object> getPerson(PersonSearch personSearch) {
         ArrayList<PersonResult> persons = tmdbService.searchPerson(personSearch);
         return ResponseEntity.status(200).body(persons);
     }
 
     @GetMapping("/getMovie")
-    public ResponseEntity<Object> getMovie(@RequestParam MovieDetailsSearch movieDetailsSearch) {
+    public ResponseEntity<Object> getMovie(MovieDetailsSearch movieDetailsSearch) {
         MovieDetailsResult moviesDetails = tmdbService.getMovie(movieDetailsSearch);
         return ResponseEntity.status(200).body(moviesDetails);
     }
