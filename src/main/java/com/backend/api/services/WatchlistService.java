@@ -3,6 +3,7 @@ package com.backend.api.services;
 import com.backend.api.models.InsertMovie;
 import com.backend.api.models.MovieCustomDetails;
 import com.backend.api.models.WatchlistData;
+import com.backend.api.models.WatchlistFilters;
 import com.backend.api.models.exceptions.TmdbServerOffException;
 import com.backend.api.models.tmdb.MovieDetailsResult;
 import com.backend.api.models.tmdb.MovieDetailsSearch;
@@ -18,10 +19,12 @@ public class WatchlistService {
     private ArrayList<WatchlistData> watchlist = new ArrayList<WatchlistData>();
 
     public Integer addMovie(Integer tmdbId, MovieCustomDetails movieCustomDetails) throws TmdbServerOffException {
-        MovieDetailsResult tmdbMovie = tmdbService.getMovie(new MovieDetailsSearch(tmdbId));
         WatchlistData data = new WatchlistData();
+        if(tmdbId != null) {
+            MovieDetailsResult tmdbMovie = tmdbService.getMovie(new MovieDetailsSearch(tmdbId));
+            data.tmdbMovieData = tmdbMovie;
+        }
         data.movieData = movieCustomDetails;
-        data.tmdbMovieData = tmdbMovie;
         watchlist.add(data);
         return watchlist.size()-1;
     }
@@ -48,13 +51,21 @@ public class WatchlistService {
         return watchlist;
     }
 
-    public WatchlistData getMovie(Integer id){
-        WatchlistData data = watchlist.get(id);
-        return data;
+    public ArrayList<WatchlistData> getWatchlistFilter(WatchlistFilters filters){
+        ArrayList<WatchlistData> list = new ArrayList<WatchlistData>();
+        for(WatchlistData data : watchlist){
+            if(filters.getTitle() != null && !filters.getTitle().isEmpty() && data.movieData.title.toLowerCase().contains(filters.getTitle().toLowerCase()) ){
+                list.add(data);
+            } else if(filters.getAuthor() != null && !filters.getAuthor().isEmpty() && data.movieData.author.contains(filters.getAuthor()) ) {
+                list.add(data);
+            } else if( filters.getStatus() != null && data.movieData.status == filters.getStatus() ){
+                list.add(data);
+            }
+        }
+        return list;
     }
 
-    public WatchlistData getMovie(){
-        WatchlistData data = watchlist.get(1);
-        return data;
+    public WatchlistData getMovie(Integer id){
+        return watchlist.get(id);
     }
 }
