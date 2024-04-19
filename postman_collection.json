@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "cd3d6560-a58e-48d9-b185-91dcfbdc51de",
+		"name": "API java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26808341"
+	},
+	"item": [
+		{
+			"name": "Ajuda",
+			"item": [
+				{
+					"name": "ajuda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/ajuda",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"ajuda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teste",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teste"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "SearchMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/searchMovie?title=",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"searchMovie"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"description": "Obrigatorio"
+								},
+								{
+									"key": "includeAdult",
+									"value": "false",
+									"description": "Opcional padrão false",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Opcional padrão 1",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "awd",
+									"description": "Opcional padrão en_US",
+									"disabled": true
+								},
+								{
+									"key": "region",
+									"value": "awd",
+									"description": "Opcional",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "1979",
+									"description": "Opcional",
+									"disabled": true
+								},
+								{
+									"key": "primaryReleaseYear",
+									"value": "1992",
+									"description": "Opcional",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchPerson",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/searchPerson?name=",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"searchPerson"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "",
+									"description": "Obrigatorio"
+								},
+								{
+									"key": "includeAdult",
+									"value": "false",
+									"description": "Opcional padão false",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Opcional padão 1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMovieDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/getMovie?movieId=550",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"getMovie"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "550",
+									"description": "Obrigatorio"
+								},
+								{
+									"key": "language",
+									"value": "",
+									"description": "Opcional padrão en_US",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WatchList",
+			"item": [
+				{
+					"name": "watchlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/watchlist",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchlistfilter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/watchlistfilter?title=&author=&status=",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlistfilter"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "author",
+									"value": ""
+								},
+								{
+									"key": "status",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchlistmovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}/watchlistmovie?id=0",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlistmovie"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\",\r\n    \"type\": [1,2,3],\r\n    \"author\": \"\",\r\n    \"status\": 1,\r\n    \"conclusionDate\": \"2024-01-01\",\r\n    \"rating\": 10,\r\n    \"originalTitle\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}/watchlist",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlist"
+							],
+							"query": [
+								{
+									"key": "tmdbId",
+									"value": "550",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchlist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Clubre da luta\",\r\n    \"type\": [1,2,3],\r\n    \"author\": \"\",\r\n    \"status\": 1,\r\n    \"conclusionDate\": \"2024-01-01\",\r\n    \"rating\": 10,\r\n    \"originalTitle\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}/watchlist?id=0&tmdbId=550",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlist"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0"
+								},
+								{
+									"key": "tmdbId",
+									"value": "550"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}/watchlist?id=2",
+							"host": [
+								"{{URI}}"
+							],
+							"path": [
+								"watchlist"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URI",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
