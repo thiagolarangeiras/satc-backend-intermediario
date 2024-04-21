@@ -44,7 +44,7 @@ public class TmdbService {
         String [][] params = {
                 {"language", movieDetailsSearch.language}
         };
-        String uri = formatUri("/movieq/" + movieDetailsSearch.movieId.toString(), params);
+        String uri = formatUri("/movie/" + movieDetailsSearch.movieId.toString(), params);
         try{
             return request(uri).body(MovieDetailsResult.class);
         } catch(RestClientResponseException e){
