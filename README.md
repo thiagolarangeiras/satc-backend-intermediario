@@ -6,8 +6,11 @@ Para mais informações visitar o repositorio
 API para criar um Lista de visualização (Watch List) de Filmes e series de TV, Utilizando a API do The Movie Data Base (TMDB) para recuperar dados dos filmes 
 
 # Como Inicializar o programa:    
+
 ## Setup de ambiente:
+
 ### Java:
+
 Windows
 * Baixar o [OpenJdk 21](https://jdk.java.net/21/)
 * Instalar ou adicionar a pasta /bin ao PATH do windows
@@ -16,7 +19,9 @@ Windows
     > OpenJDK Runtime Environment (build 21.0.2+13-58)      
     > OpenJDK 64-Bit Server VM (build 21.0.2+13-58, mixed mode, sharing)    
 * **Opcional:** Instalar o gradle
+
 ### API de terceiros:
+
 TMDB (The Movie Data Base)
 * Criar uma conta no TMDB [signup](https://www.themoviedb.org/signup)
 * Criar um [chave](https://www.themoviedb.org/settings/api)
@@ -41,6 +46,12 @@ Na teoria o gradlew deveria rodar no windows se você utilizar o Git shell do wi
 
 ### InteliJ 
 Apertar no **Play** **(Shift + F10)** Na Classe "ApiApplication"
+
+### Docker
+```sh
+
+```
+...
 
 
 # Funcionamento
