@@ -24,7 +24,8 @@ Windows
 
 TMDB (The Movie Data Base)
 * Criar uma conta no TMDB [signup](https://www.themoviedb.org/signup)
-* Criar um [chave](https://www.themoviedb.org/settings/api)
+* Criar uma [chave](https://www.themoviedb.org/settings/api) pode colocar qualquer coisa no cadastro Ex: numero 9999999 ele não valida
+  
 * Pegar o [API Read Access Token](https://www.themoviedb.org/settings/api)
 * Colocar a chave numa variavel de ambiente do seu OS com o nome: ***tmdb_key***    
   Desde que a variavel exista na seção do shell ou global no OS ela vai funcionar
