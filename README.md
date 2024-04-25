@@ -49,11 +49,12 @@ Na teoria o gradlew deveria rodar no windows se você utilizar o Git shell do wi
 Apertar no **Play** **(Shift + F10)** Na Classe "ApiApplication"
 
 ### Docker
+Na raiz rodar
 ```sh
+ docker build -t watchlist .
+ docker run --name watchlist -p 8080:8080 -e tmdb_key="sua chave" watchlist
 
 ```
-...
-
 
 # Funcionamento
 Todas as rotas foram definidas na collection do Postman que pode ser encontrada em [postman_collection](./postman_collection.json)
