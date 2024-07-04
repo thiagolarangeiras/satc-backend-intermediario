@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "cd3d6560-a58e-48d9-b185-91dcfbdc51de",
-		"name": "API java",
+		"name": "satc-backend-intermediario",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26808341"
 	},
@@ -204,7 +204,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URI}}/watchlistfilter?title=&author=&status=",
+							"raw": "{{URI}}/watchlistfilter?title=club",
 							"host": [
 								"{{URI}}"
 							],
@@ -214,15 +214,17 @@
 							"query": [
 								{
 									"key": "title",
-									"value": ""
+									"value": "club"
 								},
 								{
 									"key": "author",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "status",
-									"value": ""
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
@@ -259,7 +261,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"\",\r\n    \"type\": [1,2,3],\r\n    \"author\": \"\",\r\n    \"status\": 1,\r\n    \"conclusionDate\": \"2024-01-01\",\r\n    \"rating\": 10,\r\n    \"originalTitle\": \"\"\r\n}",
+							"raw": "{\r\n    \"title\": \"C\",\r\n    \"type\": [1,2,3],\r\n    \"author\": \"\",\r\n    \"status\": 1,\r\n    \"conclusionDate\": \"2024-01-01\",\r\n    \"rating\": 10,\r\n    \"originalTitle\": \"C\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -267,7 +269,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URI}}/watchlist",
+							"raw": "{{URI}}/watchlist?tmdbId=550",
 							"host": [
 								"{{URI}}"
 							],
@@ -277,8 +279,7 @@
 							"query": [
 								{
 									"key": "tmdbId",
-									"value": "550",
-									"disabled": true
+									"value": "550"
 								}
 							]
 						}
@@ -354,6 +355,181 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "TMDB",
+			"item": [
+				{
+					"name": "movie/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/moviwe/:movie_id?language=en-US",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"moviwe",
+								":movie_id"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en-US"
+								}
+							],
+							"variable": [
+								{
+									"key": "movie_id",
+									"value": "550",
+									"description": "Clube da luta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search/movie",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/search/movie?query=star wars&include_adult=false&language=en-US&page=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"search",
+								"movie"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "star wars"
+								},
+								{
+									"key": "include_adult",
+									"value": "false"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "primary_release_year",
+									"value": "1999",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "region",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "1999",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search/person",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWExZmRiMWU5MGJkNzE1NTNmMWZmNzI3MTI0YWE5MSIsInN1YiI6IjY2MTg3ZmI5OTBjZjUxMDE0OWExOTI3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NFAKilTdITdVkNiA_agk_NvNajkJVHVj2tgt_iNS3AQ"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://api.themoviedb.org/3/search/person?/search/movie?query=tarkovsky&include_adult=false&page=2&language=en-US&",
+							"protocol": "https",
+							"host": [
+								"api",
+								"themoviedb",
+								"org"
+							],
+							"path": [
+								"3",
+								"search",
+								"person"
+							],
+							"query": [
+								{
+									"key": "/search/movie?query",
+									"value": "tarkovsky"
+								},
+								{
+									"key": "include_adult",
+									"value": "false"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "language",
+									"value": "en-US"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TMDB-hash}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [
@@ -382,6 +558,11 @@
 		{
 			"key": "URI",
 			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "URL",
+			"value": "",
 			"type": "string"
 		}
 	]
